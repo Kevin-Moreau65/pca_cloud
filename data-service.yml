@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: user-service
+  name: data-service
   labels:
-    app: user-service
+    app: data-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-service
+      app: data-service
   template:
     metadata:
       labels: 
-        app: user-service
+        app: data-service
     spec:
       containers:
-      - name: user-service
-        image: keke65/pca_cloud_srv_user
+      - name: data-service
+        image: keke65/keke65/pca_cloud_srv_data
         ports: 
-        - containerPort: 10000
+        - containerPort: 10001
         env:
         - name: DB_HOST
           valueFrom:
@@ -44,13 +44,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata: 
-  name: user-service-service
+  name: data-service-service
 spec:
   selector: 
-    app: user-service
+    app: data-service
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 10000
-      targetPort: 10000
-      nodePort: 30000
+      port: 10001
+      targetPort: 10001
+      nodePort: 30001

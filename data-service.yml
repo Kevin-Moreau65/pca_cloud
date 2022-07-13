@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: data-service
-        image: keke65/keke65/pca_cloud_srv_data
+        image: keke65/pca_cloud_srv_data
         ports: 
         - containerPort: 10001
         env:

@@ -4,26 +4,26 @@ import { accountService } from './account.service'
 import router from '@/router'
 
 /** Paramétrage d'axios */
-const AxiosUser = axios.create({
+const AxiosUser = axios.create( {
     baseURL: 'http://localhost:10000'
-})
+} )
 
-const AxiosData = axios.create({
+const AxiosData = axios.create( {
     baseURL: 'http://localhost:10001'
-})
+} )
 
-const AxiosCtn = axios.create({
+const AxiosCtn = axios.create( {
     baseURL: 'http://localhost:10002'
-})
+} )
 
 /** Interceptor pour le token */
-AxiosData.interceptors.request.use(request => {
+AxiosData.interceptors.request.use( request => {
 
-    if(accountService.isLogged()){
-        request.headers.Authorization = 'Bearer '+accountService.getToken()
+    if ( accountService.isLogged() ) {
+        request.headers.Authorization = 'Bearer ' + accountService.getToken()
     }
 
     return request
-})
+} )
 
 export { AxiosUser, AxiosData, AxiosCtn }

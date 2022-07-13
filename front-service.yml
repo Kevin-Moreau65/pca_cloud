@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: front-service
+  labels:
+    app: front-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-service
+  template:
+    metadata:
+      labels: 
+        app: front-service
+    spec:
+      containers:
+      - name: front-service
+        image: keke65/pca_cloud_front
+        ports: 
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: front-service-service
+spec:
+  selector: 
+    app: front-service
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30001
